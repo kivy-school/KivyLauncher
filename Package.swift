@@ -41,7 +41,7 @@ let package = Package(
             targets: ["KivyLauncher"]),
     ],
 	dependencies: [
-		.package(url: "https://github.com/kv-swift/PythonCore", .upToNextMajor(from: .init(311, 0, 0))),
+		//.package(url: "https://github.com/py-swift/PythonCore", .upToNextMajor(from: .init(311, 0, 0))),
         //kivycore_package,
         pykit_package,
         py_launcher_package
