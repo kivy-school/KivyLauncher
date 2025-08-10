@@ -5,7 +5,7 @@ import PackageDescription
 import CompilerPluginSupport
 
 
-let local = true
+let local = false
 
 let pykit_package: Package.Dependency = if local {
     .package(path: "/Volumes/CodeSSD/PythonSwiftGithub/PySwiftKit")
