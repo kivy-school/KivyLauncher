@@ -167,7 +167,7 @@ public final class KivyLauncher: PyLauncherIsolated {
 	}
 	
     
-    public static func SDLmain(_ argc: Int32, _ argv: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>) -> Int32 {
+    public static func SDLmain() -> Int32 {
         guard
             let sdl2Lib = Bundle.main.path(forResource: "Frameworks/SDL2.framework/SDL2", ofType: nil),
             let handle = dlopen(sdl2Lib, RTLD_LAZY | RTLD_GLOBAL),
