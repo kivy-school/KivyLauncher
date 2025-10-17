@@ -8,7 +8,7 @@ import CompilerPluginSupport
 let local = false
 
 let pykit_package: Package.Dependency = if local {
-    .package(path: "/Volumes/CodeSSD/PythonSwiftGithub/PySwiftKit")
+    .package(path: "../PySwiftKit")
 } else {
     .package(url: "https://github.com/py-swift/PySwiftKit", from: .init(313, 0, 0))
 }
@@ -17,7 +17,7 @@ let pykit_package: Package.Dependency = if local {
 let py_launcher_package : Package.Dependency = if local {
     .package(path: "../PythonLauncher")
 } else {
-    .package(url: "https://github.com/py-swift/PythonLauncher", branch: "master")
+    .package(url: "https://github.com/py-swift/PythonLauncher", .upToNextMajor(from: "313.0.0"))
 }
 
 //let kivycore_package: Package.Dependency = if local {

@@ -40,7 +40,7 @@ public final class KivyLauncher: PyLauncherIsolated {
     }
     
 	
-	public let PYTHON_VERSION: String = "3.11"
+	public let PYTHON_VERSION: String = "3.13"
 	
 	let IOS_IS_WINDOWED: Bool = false
 	public var KIVY_CONSOLELOG: Bool = true
