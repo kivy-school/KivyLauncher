@@ -10,7 +10,7 @@ let local = false
 let pykit_package: Package.Dependency = if local {
     .package(path: "/Volumes/CodeSSD/PythonSwiftGithub/PySwiftKit")
 } else {
-    .package(url: "https://github.com/py-swift/PySwiftKit", from: .init(311, 0, 0))
+    .package(url: "https://github.com/py-swift/PySwiftKit", from: .init(313, 0, 0))
 }
 
 
@@ -38,11 +38,14 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "KivyLauncher",
-            targets: ["KivyLauncher"]),
+            targets: ["KivyLauncher"]
+        ),
+        .library(
+            name: "Kivy3Launcher",
+            targets: ["Kivy3Launcher"]
+        ),
     ],
 	dependencies: [
-		//.package(url: "https://github.com/py-swift/PythonCore", .upToNextMajor(from: .init(311, 0, 0))),
-        //kivycore_package,
         pykit_package,
         py_launcher_package
 	],
@@ -53,17 +56,20 @@ let package = Package(
             name: "KivyLauncher",
 			dependencies: [
 				.product(name: "SwiftonizeModules", package: "PySwiftKit"),
-				//.product(name: "PythonCore", package: "PythonCore"),
-				//.product(name: "PythonLibrary", package: "PythonCore"),
-                //.product(name: "KivyCore", package: "KivyCore", condition: .when(platforms: [.iOS])),
                 "PythonLauncher"
 			],
             swiftSettings: [
-                .define("KIVY"),
-                .define("ANDROID", .when(platforms: [.android]))
             ]
 		),
-		
+        .target(
+            name: "Kivy3Launcher",
+            dependencies: [
+                .product(name: "SwiftonizeModules", package: "PySwiftKit"),
+                "PythonLauncher"
+            ],
+            swiftSettings: [
+            ]
+        ),
 		
 
     ]
