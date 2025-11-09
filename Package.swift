@@ -27,7 +27,7 @@ let py_launcher_package : Package.Dependency = if local {
 //}
 
 
-let pykit: Target.Dependency = .product(name: "SwiftonizeModules", package: "PySwiftKit")
+let pykit: Target.Dependency = .product(name: "PySwiftKitBase", package: "PySwiftKit")
 
 
 
