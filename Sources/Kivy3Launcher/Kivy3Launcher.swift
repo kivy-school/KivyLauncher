@@ -54,10 +54,10 @@ public final class KivyLauncher: PyLauncherIsolated {
         #endif
         let YourApp = Bundle.main.url(forResource: "app", withExtension: nil)!
         chdir(YourApp.path)
-		if let _prog = Bundle.main.path(forResource: "app/main", ofType: "py") {
+		if let _prog = Bundle.main.path(forResource: "app/__main__", ofType: "py") {
 			prog = _prog
 		} else {
-            print("app/main.py not found")
+            print("app/__main__.py not found")
 			throw CocoaError.error(.fileNoSuchFile)
 		}
 	}
@@ -122,7 +122,7 @@ public final class KivyLauncher: PyLauncherIsolated {
         if let fd {
             
         #if DEBUG
-            print("Running main.py: \(prog)")
+            print("Running __main__.py: \(prog)")
         #endif
             
             ret = PyRun_SimpleFileEx(fd, prog, 1)
