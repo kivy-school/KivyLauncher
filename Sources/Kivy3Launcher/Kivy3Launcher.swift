@@ -50,11 +50,15 @@ public final class KivyLauncher: PyLauncherIsolated {
     
         #if os(iOS)
 		//self.pyswiftImports.append(.ios)
-        
-        #endif
         let YourApp = Bundle.main.url(forResource: "app", withExtension: nil)!
+        let main_py = Bundle.main.path(forResource: "app/__main__", ofType: "py")
+        #else
+        let YourApp = Bundle.main.url(forResource: "app", withExtension: nil)!
+        let main_py = Bundle.main.path(forResource: "app/__main__", ofType: "py")
+        #endif
+        
         chdir(YourApp.path)
-		if let _prog = Bundle.main.path(forResource: "app/__main__", ofType: "py") {
+		if let _prog = main_py {
 			prog = _prog
 		} else {
             print("app/__main__.py not found")
@@ -166,7 +170,7 @@ public final class KivyLauncher: PyLauncherIsolated {
 		#endif
 	}
 	
-    
+    #if os(iOS)
     public static func SDLmain() -> Int32 {
         //guard
             let sdl2Lib = Bundle.main.path(forResource: "Frameworks/SDL3.framework/SDL3", ofType: nil)!
@@ -186,6 +190,13 @@ public final class KivyLauncher: PyLauncherIsolated {
         
         
     }
+    #else
+    public static func SDLmain() -> Int32 {
+        var argv: [UnsafeMutablePointer<CChar>?] = []
+        KivyLauncher.run(0, &argv)
+        return 0
+    }
+    #endif
 }
 
 //
